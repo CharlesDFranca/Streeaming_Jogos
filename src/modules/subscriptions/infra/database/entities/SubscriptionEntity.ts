@@ -26,6 +26,9 @@ export class SubscriptionOrmEntity {
   @Column()
   status!: string;
 
+  @Column()
+  planId!: string;
+
   @ManyToOne(() => UserOrmEntity, (user) => user.subscriptions)
   user!: UserOrmEntity;
 
