@@ -4,7 +4,6 @@ import { HourVO } from "@modules/gameplay/value-objects/HourVO/";
 import { PingVO } from "@modules/gameplay/value-objects/PingVO/";
 import { PlayedMinutesVO } from "@modules/gameplay/value-objects/PlayedMinutesVO/";
 import type { UseCase } from "@shared/app/use-cases/UseCase/";
-import { time } from "console";
 import { randomUUID } from "crypto";
 
 export type CreateGameSessionInput = {
@@ -12,7 +11,6 @@ export type CreateGameSessionInput = {
       startTime: string;
       playedMinutes: number;
       averagePingMs: number;
- 
 };
 
 export type CreateGameSessionOutput = {

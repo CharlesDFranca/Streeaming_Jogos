@@ -8,8 +8,6 @@ export type UpdateGameSessionOutput = {
   id: string;
 };
 
-
-
 export class UpdateGameSessionUseCase
   implements UseCase<
     UpdateGameSessionInput,
