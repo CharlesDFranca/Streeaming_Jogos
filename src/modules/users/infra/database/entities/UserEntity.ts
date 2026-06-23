@@ -8,6 +8,7 @@ import {
     PrimaryColumn,
     UpdateDateColumn
 } from "typeorm";
+import { Timestamp } from "typeorm/driver/mongodb/bson.typings.js";
 
 @Entity("users")
 export class UserOrmEntity {
@@ -29,7 +30,7 @@ export class UserOrmEntity {
     )
     subscriptions!: SubscriptionOrmEntity[];
 
-    @CreateDateColumn()
+    @CreateDateColumn({ type: "time with time zone" })
     createdAt!: Date;
 
     @UpdateDateColumn()

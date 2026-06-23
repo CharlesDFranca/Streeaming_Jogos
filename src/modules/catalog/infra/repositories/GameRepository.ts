@@ -1,11 +1,12 @@
 import { Repository } from "typeorm";
 import type { GameRepository } from "../../repositories/GameRepository";
-import type { GameOrmEntity } from "../database/entities/GameEntity";
+import { GameOrmEntity } from "../database/entities/GameEntity";
 import type { Game } from "../../entities/Game";
 import { GameMapper } from "../mappers/GameMapper";
+import { AppDataSource } from "@shared/infra/database/AppSource/";
 
 export class TypeOrmGameRepository implements GameRepository {
-  private readonly ormRepo: Repository<GameOrmEntity>
+  private readonly ormRepo =  AppDataSource.getRepository(GameOrmEntity)
 
   async findById(id: string): Promise<Game | null> {
     const game = await this.ormRepo.findOne({

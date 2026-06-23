@@ -1,11 +1,12 @@
 import { Repository } from "typeorm";
 import type { SubscriptionRepository } from "../../repositories/SubscriptionRepository";
-import type { SubscriptionOrmEntity } from "../database/entities/SubscriptionEntity";
+import { SubscriptionOrmEntity } from "../database/entities/SubscriptionEntity";
 import type { Subscription } from "../../entities/Subscription";
 import { SubscriptionMapper } from "../mappers/SubscriptionMapper";
+import { AppDataSource } from "@shared/infra/database/AppSource/";
 
 export class TypeOrmSubscriptionRepository implements SubscriptionRepository {
-  private readonly ormRepo: Repository<SubscriptionOrmEntity>
+  private readonly ormRepo = AppDataSource.getRepository(SubscriptionOrmEntity)
 
   async findById(id: string): Promise<Subscription | null> {
     const sub = await this.ormRepo.findOne({

@@ -1,11 +1,12 @@
 import { Repository } from "typeorm";
 import type { CategoryRepository } from "../../repositories/CategoryRepository";
-import type { CategoryOrmEntity } from "../database/entities/CategoryEntity";
+import { CategoryOrmEntity } from "../database/entities/CategoryEntity";
 import type { Category } from "../../entities/Category";
 import { CategoryMapper } from "../mappers/CategoryMapper";
+import { AppDataSource } from "@shared/infra/database/AppSource/";
 
 export class TypeOrmCategoryRepository implements CategoryRepository {
-  private readonly ormRepo: Repository<CategoryOrmEntity>
+  private readonly ormRepo = AppDataSource.getRepository(CategoryOrmEntity)
 
   async findById(id: string): Promise<Category | null> {
     const category = await this.ormRepo.findOne({

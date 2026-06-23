@@ -1,11 +1,12 @@
 import { Repository } from "typeorm";
 import type { DeveloperRepository } from "../../repositories/DeveloperRepository";
-import type { DeveloperOrmEntity } from "../database/entities/DeveloperEntity";
+import { DeveloperOrmEntity } from "../database/entities/DeveloperEntity";
 import type { Developer } from "../../entities/Developer";
 import { DeveloperMapper } from "../mappers/DeveloperMapper";
+import { AppDataSource } from "@shared/infra/database/AppSource/";
 
 export class TypeOrmDeveloperRepository implements DeveloperRepository {
-  private readonly ormRepo: Repository<DeveloperOrmEntity>
+  private readonly ormRepo = AppDataSource.getRepository(DeveloperOrmEntity)
 
   async findById(id: string): Promise<Developer | null> {
     const dev = await this.ormRepo.findOne({

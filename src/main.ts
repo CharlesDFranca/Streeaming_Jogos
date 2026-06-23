@@ -1,6 +1,6 @@
 import "reflect-metadata";
 
-import express, { type Request, type Response } from "express";
+import express, { type NextFunction, type Request, type Response } from "express";
 import { AppDataSource } from "./shared/infra/database/AppSource";
 import { userRoutes } from "./modules/users/routes/user-routes";
 import { gameRoutes } from "./modules/catalog/routes/game-routes";
@@ -13,6 +13,19 @@ import { gameSessionRoutes } from "./modules/gameplay/routes/game-session-routes
 const app = express();
 const PORT = 3000;
 
+export function errorHandler(
+  error: Error,
+  request: Request,
+  response: Response,
+  next: NextFunction,
+) {
+  console.error(error);
+
+  return response.status(500).json({
+    message: "Internal server error",
+  });
+}
+
 app.use(userRoutes)
 app.use(developerRoutes)
 app.use(categoryRoutes)
@@ -20,6 +33,7 @@ app.use(gameRoutes)
 app.use(gameSessionRoutes)
 app.use(planRoutes)
 app.use(subscriptionRoutes)
+app.use(errorHandler)
 
 AppDataSource.initialize()
   .then(() => {
@@ -34,3 +48,4 @@ AppDataSource.initialize()
   });
 
 app.listen(PORT, () => console.log(`Rodando na porta: ${PORT}`));
+
