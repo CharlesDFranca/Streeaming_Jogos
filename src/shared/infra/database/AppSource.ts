@@ -10,12 +10,7 @@ import { DataSource } from "typeorm";
 
 export const AppDataSource = new DataSource({
     type: "postgres",
-    // url: "host=localhost port=5432 dbname=streaming_database user=postgres password=xxxxxxx connect_timeout=10 sslmode=prefer",
-    host: "localhost",
-    port: 5432,
-    username: "postgres",
-    password: "A37hu3AM!",
-    database: "streaming_database",
+    url: "postgresql://neondb_owner:npg_TK6ipoR2Yecb@ep-proud-bread-atwydstn-pooler.c-9.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require",
     entities: [
         UserOrmEntity,
         GameOrmEntity,

@@ -11,6 +11,10 @@ export type UpdateUserInput = {
 
 export type UpdateUserOutput = {
   id: string;
+  name: string;
+  email: string;
+  createdAt: Date;
+  updatedAt: Date;
 };
 
 export class UpdateUserUseCase implements UseCase<
@@ -46,6 +50,10 @@ export class UpdateUserUseCase implements UseCase<
 
     return {
       id: updated.id,
+      name: updated.name.value,
+      email: updated.email.value,
+      createdAt: updated.createdAt,
+      updatedAt: updated.updatedAt,
     };
   }
 }
