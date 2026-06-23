@@ -1,50 +1,58 @@
+import "reflect-metadata";
 import {
-  Entity,
-  PrimaryColumn,
-  Column,
-  ManyToOne,
-  ManyToMany,
-  JoinTable,
-  CreateDateColumn,
-  UpdateDateColumn,
+    Entity,
+    PrimaryColumn,
+    Column,
+    ManyToOne,
+    ManyToMany,
+    JoinTable,
+    CreateDateColumn,
+    UpdateDateColumn
 } from "typeorm";
 import { DeveloperOrmEntity } from "./DeveloperEntity";
 import { CategoryOrmEntity } from "./CategoryEntity";
 
 @Entity("games")
 export class GameOrmEntity {
-  @PrimaryColumn()
-  id!: string;
+    @PrimaryColumn({ type: "uuid" })
+    id!: string;
 
-  @Column()
-  title!: string;
+    @Column({ type: "varchar" })
+    title!: string;
 
-  @Column("text")
-  description!: string;
+    @Column("text")
+    description!: string;
 
-  @Column()
-  releaseDate!: Date;
+    @Column({ type: "date" })
+    releaseDate!: Date;
 
-  @Column()
-  minimumAge!: number;
+    @Column({ type: "integer" })
+    minimumAge!: number;
 
-  @Column()
-  developerId!: string;
+    @Column({ type: "varchar" })
+    developerId!: string;
 
-  @ManyToOne(() => DeveloperOrmEntity, (dev) => dev.games)
-  developer!: DeveloperOrmEntity;
+    @ManyToOne(
+        () => DeveloperOrmEntity,
+        dev => dev.games
+    )
+    developer!: DeveloperOrmEntity;
 
-  @ManyToMany(() => CategoryOrmEntity, (cat) => cat.games, {
-    cascade: true,
-  })
-  @JoinTable({
-    name: "game_categories",
-  })
-  categories!: CategoryOrmEntity[];
+    @ManyToMany(
+        () => CategoryOrmEntity,
+        cat => cat.games,
+        {
+            cascade: true
+        }
+    )
+    @JoinTable({
+        name: "game_categories"
+    })
+    categories!: CategoryOrmEntity[];
 
-  @CreateDateColumn()
-  createdAt!: Date;
+    @CreateDateColumn()
+    createdAt!: Date;
 
-  @UpdateDateColumn()
-  updatedAt!: Date;
+    @UpdateDateColumn()
+    updatedAt!: Date;
 }

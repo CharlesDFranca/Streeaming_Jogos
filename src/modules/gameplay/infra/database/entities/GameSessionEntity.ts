@@ -1,46 +1,47 @@
+import "reflect-metadata";
 import { GameOrmEntity } from "@modules/catalog/infra/database/entities/GameEntity/";
 import { UserOrmEntity } from "@modules/users/infra/database/entities/UserEntity/";
 import {
-  Entity,
-  PrimaryColumn,
-  Column,
-  ManyToOne,
-  CreateDateColumn,
-  UpdateDateColumn,
+    Entity,
+    PrimaryColumn,
+    Column,
+    ManyToOne,
+    CreateDateColumn,
+    UpdateDateColumn
 } from "typeorm";
 
 @Entity("game_sessions")
 export class GameSessionOrmEntity {
-  @PrimaryColumn()
-  id!: string;
+    @PrimaryColumn({ type: "uuid" })
+    id!: string;
 
-  @Column()
-  userId!: string;
+    @Column({ type: "varchar" })
+    userId!: string;
 
-  @Column()
-  gameId!: string;
+    @Column({ type: "varchar" })
+    gameId!: string;
 
-  @Column()
-  startDate!: Date;
+    @Column({ type: "date" })
+    startDate!: Date;
 
-  @Column()
-  startTime!: string;
+    @Column({ type: "varchar" })
+    startTime!: string;
 
-  @Column()
-  playedMinutes!: number;
+    @Column({ type: "integer" })
+    playedMinutes!: number;
 
-  @Column()
-  averagePingMs!: number;
+    @Column({ type: "integer" })
+    averagePingMs!: number;
 
-  @ManyToOne(() => UserOrmEntity)
-  user!: UserOrmEntity;
+    @ManyToOne(() => UserOrmEntity)
+    user!: UserOrmEntity;
 
-  @ManyToOne(() => GameOrmEntity)
-  game!: GameOrmEntity;
+    @ManyToOne(() => GameOrmEntity)
+    game!: GameOrmEntity;
 
-  @CreateDateColumn()
-  createdAt!: Date;
+    @CreateDateColumn()
+    createdAt!: Date;
 
-  @UpdateDateColumn()
-  updatedAt!: Date;
+    @UpdateDateColumn()
+    updatedAt!: Date;
 }

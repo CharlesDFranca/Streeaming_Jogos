@@ -1,40 +1,44 @@
+import "reflect-metadata";
 import { UserOrmEntity } from "@modules/users/infra/database/entities/UserEntity/";
 import {
-  Entity,
-  PrimaryColumn,
-  Column,
-  ManyToOne,
-  CreateDateColumn,
-  UpdateDateColumn,
+    Entity,
+    PrimaryColumn,
+    Column,
+    ManyToOne,
+    CreateDateColumn,
+    UpdateDateColumn
 } from "typeorm";
 import { PlanOrmEntity } from "./PlanEntity";
 
 @Entity("subscriptions")
 export class SubscriptionOrmEntity {
-  @PrimaryColumn()
-  id!: string;
+    @PrimaryColumn({ type: "uuid" })
+    id!: string;
 
-  @Column()
-  userId!: string;
+    @Column({ type: "varchar" })
+    userId!: string;
 
-  @Column()
-  startDate!: Date;
+    @Column({ type: "date" })
+    startDate!: Date;
 
-  @Column()
-  endDate!: Date;
+    @Column({ type: "date" })
+    endDate!: Date;
 
-  @Column()
-  status!: string;
+    @Column({ type: "varchar" })
+    status!: string;
 
-  @ManyToOne(() => UserOrmEntity, (user) => user.subscriptions)
-  user!: UserOrmEntity;
+    @ManyToOne(
+        () => UserOrmEntity,
+        user => user.subscriptions
+    )
+    user!: UserOrmEntity;
 
-  @ManyToOne(() => PlanOrmEntity)
-  plan!: PlanOrmEntity;
+    @ManyToOne(() => PlanOrmEntity)
+    plan!: PlanOrmEntity;
 
-  @CreateDateColumn()
-  createdAt!: Date;
+    @CreateDateColumn()
+    createdAt!: Date;
 
-  @UpdateDateColumn()
-  updatedAt!: Date;
+    @UpdateDateColumn()
+    updatedAt!: Date;
 }

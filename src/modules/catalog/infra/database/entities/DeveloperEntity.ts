@@ -1,36 +1,40 @@
+import "reflect-metadata";
 import {
-  Entity,
-  PrimaryColumn,
-  Column,
-  OneToMany,
-  CreateDateColumn,
-  UpdateDateColumn,
+    Entity,
+    PrimaryColumn,
+    Column,
+    OneToMany,
+    CreateDateColumn,
+    UpdateDateColumn
 } from "typeorm";
 import { GameOrmEntity } from "./GameEntity";
 
 @Entity("developers")
 export class DeveloperOrmEntity {
-  @PrimaryColumn()
-  id!: string;
+    @PrimaryColumn({ type: "uuid" })
+    id!: string;
 
-  @Column()
-  name!: string;
+    @Column({ type: "varchar" })
+    name!: string;
 
-  @Column()
-  headquartersCountry!: string;
+    @Column({ type: "varchar" })
+    headquartersCountry!: string;
 
-  @Column()
-  officialWebsite!: string;
+    @Column({ type: "varchar" })
+    officialWebsite!: string;
 
-  @Column()
-  foundationYear!: number;
+    @Column({ type: "integer" })
+    foundationYear!: number;
 
-  @OneToMany(() => GameOrmEntity, (game) => game.developer)
-  games!: GameOrmEntity[];
+    @OneToMany(
+        () => GameOrmEntity,
+        game => game.developer
+    )
+    games!: GameOrmEntity[];
 
-  @CreateDateColumn()
-  createdAt!: Date;
+    @CreateDateColumn()
+    createdAt!: Date;
 
-  @UpdateDateColumn()
-  updatedAt!: Date;
+    @UpdateDateColumn()
+    updatedAt!: Date;
 }
