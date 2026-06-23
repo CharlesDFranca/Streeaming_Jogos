@@ -1,6 +1,7 @@
 import "reflect-metadata";
 
 import express, { type NextFunction, type Request, type Response } from "express";
+import cors from "cors";
 import { AppDataSource } from "./shared/infra/database/AppSource";
 import { userRoutes } from "./modules/users/routes/user-routes";
 import { gameRoutes } from "./modules/catalog/routes/game-routes";
@@ -12,6 +13,9 @@ import { gameSessionRoutes } from "./modules/gameplay/routes/game-session-routes
 
 const app = express();
 const PORT = 3000;
+
+app.use(cors());
+app.use(express.json());
 
 export function errorHandler(
   error: Error,
