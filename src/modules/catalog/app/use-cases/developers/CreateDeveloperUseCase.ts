@@ -2,7 +2,8 @@
 export type CreateDeveloperInput = {
   name: string;
   headquartersCountry: string;
-  officialWebsite: string
+  officialWebsite: string,
+  foundationYear: number
 };
 
 export type CreateDeveloperOutput = {
@@ -11,11 +12,12 @@ export type CreateDeveloperOutput = {
 
 import { randomUUID } from "crypto";
 import type { UseCase } from "@shared/app/use-cases/UseCase/";
-import type { DeveloperRepository } from "../../repositories/DeveloperRepository";
-import { Developer } from "../../entities/Developer";
-import { DeveloperNameVO } from "../../value-objects/DeveloperNameVO";
-import { CountryVO } from "../../value-objects/CountryVO";
-import { WebsiteVO } from "../../value-objects/WebsiteVo";
+import type { DeveloperRepository } from "@modules/catalog/repositories/DeveloperRepository/";
+import { Developer } from "@modules/catalog/entities/Developer/";
+import { DeveloperNameVO } from "@modules/catalog/value-objects/DeveloperNameVO/";
+import { CountryVO } from "@modules/catalog/value-objects/CountryVO/";
+import { WebsiteVO } from "@modules/catalog/value-objects/WebsiteVo/";
+import { FoundationYearVO } from "@modules/catalog/value-objects/FoundationYearVO/";
 
 
 export class CreateDeveloperUseCase
@@ -33,7 +35,8 @@ export class CreateDeveloperUseCase
     const developer = new Developer(randomUUID(), {
       name: new DeveloperNameVO(input.name),
       headquartersCountry: new CountryVO(input.headquartersCountry),
-      officialWebsite: new WebsiteVO(input.officialWebsite)
+      officialWebsite: new WebsiteVO(input.officialWebsite),
+      foundationYear: new FoundationYearVO(input.foundationYear)
     });
 
     await this.developerRepository.save(developer);

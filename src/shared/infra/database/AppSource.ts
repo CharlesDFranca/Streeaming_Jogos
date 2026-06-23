@@ -9,7 +9,5 @@ export const AppDataSource = new DataSource({
     username: "postgres",
     password: "A37hu3AM",
     database: "streaming_database",
-    entities: ["src/**/**Entity.ts"],
-    migrations: ["src/migrations/*.ts"]
+    entities: ["src/**/**Entity.ts"]
 });
-
