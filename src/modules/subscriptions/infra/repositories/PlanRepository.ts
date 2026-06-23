@@ -5,7 +5,7 @@ import type { Plan } from "../../entities/Plan";
 import { PlanMapper } from "../mappers/PlanMapper";
 
 export class TypeOrmPlanRepository implements PlanRepository {
-  constructor(private readonly ormRepo: Repository<PlanOrmEntity>) {}
+  private readonly ormRepo: Repository<PlanOrmEntity>
 
   async findById(id: string): Promise<Plan | null> {
     const plan = await this.ormRepo.findOne({

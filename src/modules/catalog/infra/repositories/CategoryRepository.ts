@@ -5,7 +5,7 @@ import type { Category } from "../../entities/Category";
 import { CategoryMapper } from "../mappers/CategoryMapper";
 
 export class TypeOrmCategoryRepository implements CategoryRepository {
-  constructor(private readonly ormRepo: Repository<CategoryOrmEntity>) {}
+  private readonly ormRepo: Repository<CategoryOrmEntity>
 
   async findById(id: string): Promise<Category | null> {
     const category = await this.ormRepo.findOne({

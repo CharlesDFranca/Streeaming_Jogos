@@ -5,7 +5,7 @@ import type { Developer } from "../../entities/Developer";
 import { DeveloperMapper } from "../mappers/DeveloperMapper";
 
 export class TypeOrmDeveloperRepository implements DeveloperRepository {
-  constructor(private readonly ormRepo: Repository<DeveloperOrmEntity>) {}
+  private readonly ormRepo: Repository<DeveloperOrmEntity>
 
   async findById(id: string): Promise<Developer | null> {
     const dev = await this.ormRepo.findOne({

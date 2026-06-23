@@ -5,7 +5,7 @@ import type { Subscription } from "../../entities/Subscription";
 import { SubscriptionMapper } from "../mappers/SubscriptionMapper";
 
 export class TypeOrmSubscriptionRepository implements SubscriptionRepository {
-  constructor(private readonly ormRepo: Repository<SubscriptionOrmEntity>) {}
+  private readonly ormRepo: Repository<SubscriptionOrmEntity>
 
   async findById(id: string): Promise<Subscription | null> {
     const sub = await this.ormRepo.findOne({

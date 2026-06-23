@@ -6,7 +6,7 @@ import { User } from "../../entities/User";
 import type { EmailVO } from "../../value-objects/EmailVO";
 
 export class TypeOrmUserRepository implements UserRepository {
-  constructor(private readonly ormRepo: Repository<UserOrmEntity>) {}
+  private readonly ormRepo: Repository<UserOrmEntity>
 
   async update(user: User): Promise<User> {
     const updatedUser = await this.ormRepo.save(UserMapper.toPersistence(user));

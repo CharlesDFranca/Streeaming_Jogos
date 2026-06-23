@@ -5,7 +5,7 @@ import type { Game } from "../../entities/Game";
 import { GameMapper } from "../mappers/GameMapper";
 
 export class TypeOrmGameRepository implements GameRepository {
-  constructor(private readonly ormRepo: Repository<GameOrmEntity>) {}
+  private readonly ormRepo: Repository<GameOrmEntity>
 
   async findById(id: string): Promise<Game | null> {
     const game = await this.ormRepo.findOne({
