@@ -22,6 +22,9 @@ export class DeveloperOrmEntity {
   @Column()
   officialWebsite!: string;
 
+  @Column()
+  foundationYear!: number;
+
   @OneToMany(() => GameOrmEntity, (game) => game.developer)
   games!: GameOrmEntity[];
 
