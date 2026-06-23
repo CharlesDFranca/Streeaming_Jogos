@@ -1,3 +1,7 @@
+
+import type { DeveloperRepository } from "@modules/catalog/repositories/DeveloperRepository/";
+import type { UseCase } from "@shared/app/use-cases/UseCase/";
+
 export type ListDevelopersInput = void;
 
 export type ListDevelopersOutput = {
@@ -7,8 +11,6 @@ export type ListDevelopersOutput = {
   }[];
 };
 
-import type { UseCase } from "@shared/app/use-cases/UseCase/";
-import type { DeveloperRepository } from "../../repositories/DeveloperRepository";
 
 export class ListDevelopersUseCase
   implements UseCase<ListDevelopersInput, ListDevelopersOutput>

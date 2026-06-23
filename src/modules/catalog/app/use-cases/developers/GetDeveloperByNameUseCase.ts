@@ -1,3 +1,6 @@
+import type { DeveloperRepository } from "@modules/catalog/repositories/DeveloperRepository/";
+import type { UseCase } from "@shared/app/use-cases/UseCase/";
+
 export type GetDeveloperByNameInput = {
  name: string;
 };
@@ -6,10 +9,6 @@ export type GetDeveloperByNameOutput = {
   id: string;
   name: string;
 };
-
-import type { UseCase } from "@shared/app/use-cases/UseCase/";
-import type { DeveloperRepository } from "../../repositories/DeveloperRepository";
-
 
 export class GetDeveloperByNameUseCase
   implements UseCase<GetDeveloperByNameInput, GetDeveloperByNameOutput>

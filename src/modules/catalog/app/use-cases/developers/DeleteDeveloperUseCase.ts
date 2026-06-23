@@ -1,11 +1,11 @@
+import type { DeveloperRepository } from "@modules/catalog/repositories/DeveloperRepository/";
+import type { UseCase } from "@shared/app/use-cases/UseCase/";
+
 export type DeleteDeveloperInput = {
   id: string;
 };
 
 export type DeleteDeveloperOutput = void;
-
-import type { UseCase } from "@shared/app/use-cases/UseCase/";
-import type { DeveloperRepository } from "../../repositories/DeveloperRepository";
 
 export class DeleteDeveloperUseCase
   implements UseCase<DeleteDeveloperInput, DeleteDeveloperOutput>
